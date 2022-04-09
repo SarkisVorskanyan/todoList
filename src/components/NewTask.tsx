@@ -8,10 +8,16 @@ import DatePicker from '@mui/lab/DatePicker';
 import Button from '@mui/material/Button';
 import moment from 'moment'
 
+interface NewTaskPropsType {
+    valueDate: any,
+    setValueDate: (valueDate: any) => void,
+    value: string,
+    setValue: (value: string) => void
+}
 
-const NewTask: FC = () => {
+
+const NewTask: FC <NewTaskPropsType>= ({valueDate, setValueDate, value, setValue}) => {
     const classes = useStyles()
-    const [value, setValue] = useState<any>(null);
 
     return (
         <Box className={classes.header}>
@@ -21,17 +27,19 @@ const NewTask: FC = () => {
                     margin: '0 10px'
                 }}
             >
-                <TextField label="Task" />
+                <TextField 
+                    style={{backgroundColor: 'transparent'}}
+                    value={value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+                    label="Task" />
             </Box>
             <Box style={{margin: '0 10px'}}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                     label="Basic example"
-                    value={value}
-                    onChange={(newValue) => {
-                    setValue(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
+                    value={valueDate}
+                    onChange={(e) => setValueDate(moment(e).format('l'))}
+                    renderInput={(params) => <TextField style={{backgroundColor: 'transparent'}} {...params} />}
                 />
             </LocalizationProvider>
             </Box>
