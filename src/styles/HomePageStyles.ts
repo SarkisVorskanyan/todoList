@@ -10,7 +10,10 @@ export const useStyles = makeStyles({
         padding: 10
     },
     header: {
-        display: 'flex'
-
+        display: 'flex',
+        backgroundColor: '#43b99e',
+        padding: 25,
+        borderRadius: 10,
+        
     }
 })
