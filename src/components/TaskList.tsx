@@ -1,37 +1,38 @@
-import React, { FC, useEffect, useState } from 'react'
-import ListSubheader from '@mui/material/ListSubheader';
+import React, { FC, useState } from 'react'
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import { DateType } from '../models/ListType';
 import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import ListItem from '@mui/material/ListItem';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CheckedType } from '../models/CheckedType';
 
 interface TaskListProps {
-  dateList: DateType[]
+  dateList: DateType[],
+  checkTask: (checkObj: CheckedType) => void,
+  deleteTask: (deleteObj: CheckedType) => void
 }
 
 
 
-const TaskList: FC <TaskListProps> = ({dateList}) => {
+const TaskList: FC <TaskListProps> = ({dateList, checkTask, deleteTask}) => {
 
-    const [open, setOpen] = useState<number>(1000);
+    const [open, setOpen] = useState<number>(1000)
 
     const handleClick = (id: number) => {
-        setOpen(id);
-      };
-
-      useEffect(() => {
-        console.log(open)
-      }, [open])
-    
+      if(open === id){
+        setOpen(1000)
+      }else{
+        setOpen(id)
+      }
+    }
 
     return (
       <Box>
@@ -51,15 +52,29 @@ const TaskList: FC <TaskListProps> = ({dateList}) => {
         </ListItemButton>
         {item.list.map((listItem, indexList) => 
           <Collapse in={open === i} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary={listItem.content} />
-            </ListItemButton>
-          </List>
-        </Collapse>
+            <ListItem secondaryAction={
+              <ListItemButton onClick={() => deleteTask({
+                date: item.date,
+                task_id: listItem.list_id
+              })}>
+                <DeleteIcon />
+              </ListItemButton>
+            }>
+               <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                  <Checkbox
+                      checked={listItem.completed}
+                      onChange={(e) => checkTask({
+                        date: item.date,
+                        task_id: listItem.list_id,
+                        checked: e.target.checked
+                      })}
+              />
+                  </ListItemIcon>
+                  <ListItemText sx={{textDecoration: listItem.completed ? 'line-through' : ''}} primary={listItem.content} />
+              </ListItemButton>
+            </ListItem>
+          </Collapse>
         )}
       </List>
         )}
