@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
         backgroundColor: '#43b99e',
         padding: 25,
         borderRadius: 10,
+        justifyContent: 'space-between'
         
     }
 })

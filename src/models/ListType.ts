@@ -6,6 +6,9 @@ export interface DateType {
 
 
 export interface ListType {
-    content: string,
-    list_id: Number
+    content?: string,
+    list_id?: Number,
+    completed?: boolean
 }
+
+

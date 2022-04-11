@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useStyles } from '../styles/HomePageStyles';
@@ -12,11 +12,12 @@ interface NewTaskPropsType {
     valueDate: any,
     setValueDate: (valueDate: any) => void,
     value: string,
-    setValue: (value: string) => void
+    setValue: (value: string) => void,
+    addTask: () => void
 }
 
 
-const NewTask: FC <NewTaskPropsType>= ({valueDate, setValueDate, value, setValue}) => {
+const NewTask: FC <NewTaskPropsType>= ({valueDate, setValueDate, value, setValue, addTask}) => {
     const classes = useStyles()
 
     return (
@@ -43,7 +44,7 @@ const NewTask: FC <NewTaskPropsType>= ({valueDate, setValueDate, value, setValue
                 />
             </LocalizationProvider>
             </Box>
-            <Button variant="contained">Add task</Button>
+            <Button onClick={addTask} variant="contained">Add task</Button>
         </Box>
         
     )
