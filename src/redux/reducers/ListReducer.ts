@@ -25,7 +25,7 @@ const initialState: ListState = {
             id: Math.random(),
             list: [
                 {
-                    content: 'Marine',
+                    content: 'Some text',
                     list_id: Math.random(),
                     completed: true
                 }
@@ -36,17 +36,17 @@ const initialState: ListState = {
             id: Math.random(),
             list: [
                 {
-                    content: 'Liana',
+                    content: 'Some text',
                     list_id: Math.random(),
                     completed: false
                 },
                 {
-                    content: 'Liana',
+                    content: 'Some text',
                     list_id: Math.random(),
                     completed: true
                 },
                 {
-                    content: 'Liana',
+                    content: 'Some text',
                     list_id: Math.random(),
                     completed: false
                 }
@@ -57,7 +57,7 @@ const initialState: ListState = {
             id: Math.random(),
             list: [
                 {
-                    content: 'Sargis',
+                    content: 'Some text',
                     list_id: Math.random(),
                     completed: false
                 }
