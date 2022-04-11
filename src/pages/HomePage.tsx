@@ -3,12 +3,16 @@ import Button from '@mui/material/Button';
 import NewTask from '../components/NewTask';
 import Box from '@mui/material/Box';
 import { useStyles } from '../styles/HomePageStyles';
+import TaskList from '../components/TaskList';
+import { useAppSelector } from '../redux/hooks';
 
 
 const HomePage: FC = () => {
     const classes = useStyles()
     const [valueDate, setValueDate] = useState<any>(null)
     const [value, setValue] = useState<string>('')
+
+    const {dateList} = useAppSelector(state => state.list);
 
     useEffect(() => {
         console.log(valueDate, value)
@@ -21,6 +25,7 @@ const HomePage: FC = () => {
                      value={value}
                      setValue={setValue}
             />
+            <TaskList dateList={dateList} />
         </Box>
        
      

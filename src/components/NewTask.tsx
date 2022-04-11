@@ -43,7 +43,7 @@ const NewTask: FC <NewTaskPropsType>= ({valueDate, setValueDate, value, setValue
                 />
             </LocalizationProvider>
             </Box>
-            <Button variant="contained">Contained</Button>
+            <Button variant="contained">Add task</Button>
         </Box>
         
     )
