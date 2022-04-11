@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         minHeight: '100%',
+        flexDirection: 'column',
         marginTop: 100,
         padding: 10
     },
